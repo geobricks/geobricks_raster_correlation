@@ -1,7 +1,7 @@
 from flask import Flask
 from flask.ext.cors import CORS
-from geobricks_processing.config.rest_config import config
-from geobricks_processing.rest import processing_rest
+from geobricks_raster_correlation.config.config import config
+from geobricks_raster_correlation.rest import raster_correlation_rest as r
 import logging
 
 # Initialize the Flask app
@@ -11,7 +11,7 @@ app = Flask(__name__)
 cors = CORS(app, resources={r'/*': {'origins': '*'}})
 
 # Core services.
-app.register_blueprint(processing_rest.app, url_prefix='/geobricks_raster_correlation')
+app.register_blueprint(r.app, url_prefix='/geobricks_raster_correlation')
 
 # Logging level.
 log = logging.getLogger('werkzeug')
