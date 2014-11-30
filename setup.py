@@ -12,7 +12,6 @@ setup(
     description='Geobricks library to correlate two raster and create statistics and scatter charts.',
     install_requires=[
         'flask',
-        'BeautifulSoup',
         'brewer2mpl',
         'PySal',
         'numpy',
