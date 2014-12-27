@@ -21,8 +21,8 @@ def discovery():
     return Response(json.dumps(out), content_type='application/json; charset=utf-8')
 
 
-@app.route('/rasters/scatter_plot/<layers>/', methods=['GET'])
-@app.route('/rasters/scatter_plot/<layers>', methods=['GET'])
+@app.route('/rasters/scatter_plot/<layers>/', methods=['POST'])
+@app.route('/rasters/scatter_plot/<layers>', methods=['POST'])
 @cross_origin(origins='*', headers=['Content-Type'])
 def get_scatter_plot(layers):
     try:
