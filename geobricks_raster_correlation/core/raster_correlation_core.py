@@ -1,5 +1,5 @@
 import numpy as np
-from osgeo import gdal
+import gdal
 import time
 from pysal.esda import mapclassify
 from brewer2mpl import get_map as brewer2mpl_get_map
