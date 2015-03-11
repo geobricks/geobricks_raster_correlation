@@ -20,11 +20,11 @@ def get_correlation_json(obj):
         intervals = 6
         color_ramp = 'Reds'
         if "stats" in obj:
-            if "correlation" in obj:
+            if "correlation" in obj["stats"]:
                 o = obj["stats"]["correlation"]
-                if o["bins"]: bins = o["bins"]
-                if o["intervals"]: intervals = o["intervals"]
-                if o["color_ramp"]: color_ramp = o["colorRamp"]
+                if "bins" in o: bins = o["bins"]
+                if "intervals" in o: intervals = o["intervals"]
+                if "color_ramp" in o: color_ramp = o["colorRamp"]
 
         return get_correlation(raster_path1, raster_path2, bins, intervals, color_ramp)
     except Exception, e:
