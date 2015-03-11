@@ -3,20 +3,21 @@ Geobricks Raster Correlation
 
 The Geobricks Raster Correlation library provides an easy way correlate two raster of the same size, returning a json containing statistical outputs and frequencies information to be used directly with Highcharts JS library.
 
-Installation
-============
+# Installation
+
 The library is distributed through PyPi and can be installed by typing the following command in the console:
 ```
 pip install GeobricksRasterCorrelation
 ```
-Examples
-========
+# Examples
+
+## Library usage
 
 ```python
 from geobricks_raster_correlation.core.raster_correlation_core import create_scatter
 
-raster_path1 = "../test_data/morocco/wheat_actual_biomprod_201010_doukkala.tif"
-raster_path2 = "../test_data/morocco/wheat_potential_biomprod_201010_doukkala.tif"
+raster_path1 = "path_to_raster1.tif"
+raster_path2 = "path_to_raster2.tif"
 # Number of bins to be applied to the scatter chart
 bins = 300
 corr = create_scatter(raster_path1, raster_path2, bins)
