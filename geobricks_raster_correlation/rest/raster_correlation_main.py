@@ -11,7 +11,7 @@ app = Flask(__name__)
 cors = CORS(app, resources={r'/*': {'origins': '*'}})
 
 # Core services.
-app.register_blueprint(r.app, url_prefix='/geobricks_raster_correlation')
+app.register_blueprint(r.app, url_prefix='/correlation')
 
 # Logging level.
 log = logging.getLogger('werkzeug')

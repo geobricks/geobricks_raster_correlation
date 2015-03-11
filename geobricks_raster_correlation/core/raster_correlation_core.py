@@ -5,14 +5,39 @@ from pysal.esda import mapclassify
 from brewer2mpl import get_map as brewer2mpl_get_map
 from scipy.stats import linregress
 from geobricks_common.core.log import logger
+from geobricks_common.core.filesystem import get_raster_path
+from geobricks_raster_correlation.core.colors import get_colors
 
 log = logger(__file__)
 
 
-def get_correlation(raster_path1, raster_path2, bins=300, intervals=6, color='Reds', color_type='Sequential', reverse=False, min1=None, max1=None, min2=None, max2=None, band1=1, band2=1, classification_type="Jenks_Caspall"):
+def get_correlation_json(obj):
+    try:
+        raster = obj["raster"]
+        raster_path1 = get_raster_path(raster[0])
+        raster_path2 = get_raster_path(raster[1])
+        bins = 300
+        intervals = 6
+        color_ramp = 'Reds'
+        if "stats" in obj:
+            if "correlation" in obj:
+                o = obj["stats"]["correlation"]
+                if o["bins"]: bins = o["bins"]
+                if o["intervals"]: intervals = o["intervals"]
+                if o["color_ramp"]: color_ramp = o["colorRamp"]
+
+        return get_correlation(raster_path1, raster_path2, bins, intervals, color_ramp)
+    except Exception, e:
+        raise Exception(e)
+
+
+def get_correlation(raster_path1, raster_path2, bins=300, intervals=6, color_ramp='Reds', reverse=False, min1=None, max1=None, min2=None, max2=None, band1=1, band2=1, classification_type="Jenks_Caspall"):
 
     ds1 = gdal.Open(raster_path1)
     ds2 = gdal.Open(raster_path2)
+
+    if bins is None:
+        bins = 300
 
     if _check_raster_equal_size(ds1, ds2):
         band1 = ds1.GetRasterBand(band1)
@@ -38,7 +63,7 @@ def get_correlation(raster_path1, raster_path2, bins=300, intervals=6, color='Re
 
         # Calculation of the frequencies
         statistics = compute_frequencies(array1, array2, min1, min2, max1, max2, nodata1, nodata2, bins)
-        series = get_series(statistics["scatter"].values(), intervals, color, color_type, reverse, classification_type)
+        series = get_series(statistics["scatter"].values(), intervals, color_ramp, reverse, classification_type)
 
         result = dict()
         # probably not useful for the chart itself
@@ -131,15 +156,15 @@ def classify_values(values, k=5, classification_type="Jenks_Caspall"):
     return result.bins
 
 
-def get_series(values, intervals, color, color_type, reverse=False, classification_type="Jenks_Caspall"):
+def get_series(values, intervals, color_ramp, reverse=False, classification_type="Jenks_Caspall"):
     classification_values = []
     for v in values:
         classification_values.append(float(v['freq']))
 
     classes = classify_values(classification_values, intervals, classification_type)
-    #bmap = brewer2mpl.get_map('RdYlGn', 'Diverging', 9, reverse=True)
-    bmap = brewer2mpl_get_map(color, color_type, intervals+1, reverse=reverse)
-    colors = bmap.hex_colors
+
+    # TODO: get colors
+    colors = get_colors(color_ramp, intervals, reverse)
 
     # creating series
     series = []
@@ -147,7 +172,7 @@ def get_series(values, intervals, color, color_type, reverse=False, classificati
         #print color
         series.append({
             "color": color,
-            "data" : []
+            "data": []
         })
 
     #classes
