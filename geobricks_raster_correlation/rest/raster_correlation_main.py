@@ -19,4 +19,4 @@ log.setLevel(logging.INFO)
 
 # Start Flask server
 if __name__ == '__main__':
-    app.run(host=config['host'], port=config['port'], debug=config['debug'], threaded=True)
+    app.run(host=config['settings']['host'], port=config['settings']['port'], debug=config['settings']['debug'], threaded=True)
