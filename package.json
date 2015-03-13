@@ -3,6 +3,7 @@
    "label": {
       "en": "Geobricks Raster Correlation"
    },
+   "language": "Python",
    "description": "Library to correlate rasters and get correlation statistics and its chart scatter series.",
    "license": "GPL2",
    "homepage": "http://geobricks.org/",
