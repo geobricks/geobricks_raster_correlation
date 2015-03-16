@@ -11,7 +11,9 @@ setup(
     long_description=open('README.md').read(),
     description='Geobricks library to correlate two raster and create statistics and scatter charts.',
     install_requires=[
+        'watchdog',
         'flask',
+        'flask-cors',
         'brewer2mpl',
         'PySal',
         'numpy',
