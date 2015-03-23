@@ -2,7 +2,6 @@ import numpy as np
 import gdal
 import time
 from pysal.esda import mapclassify
-from brewer2mpl import get_map as brewer2mpl_get_map
 from scipy.stats import linregress
 from geobricks_common.core.log import logger
 from geobricks_common.core.filesystem import get_raster_path
