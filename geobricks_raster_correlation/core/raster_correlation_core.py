@@ -109,10 +109,13 @@ def process_correlation(array1, array2, bins=300, add_stats=True, add_series=Tru
             for x in range(0, len(xedges)-1):
                 for y in range(0, len(yedges)-1):
                     if heatmap[x][y] > 0:
+                        # print heatmap[x][y], xedges[x], yedges[y]
                         d["scatter"][str(xedges[x]) + "_" + str(yedges[y])] = {
                             "data": [xedges[x], yedges[y]],
                             "freq": heatmap[x][y]
                         }
+
+        # print d
         log.info("Correlation computation End")
         return d
     except Exception, e:

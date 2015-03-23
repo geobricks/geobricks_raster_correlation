@@ -3,7 +3,7 @@ from geobricks_raster_correlation.core.raster_correlation_core import get_correl
 
 raster_path1 = "../../test_data/geoserver_data_dir/data/workspace/wheat_actual_biomprod_201010_doukkala/wheat_actual_biomprod_201010_doukkala.geotiff"
 raster_path2 = "../../test_data/geoserver_data_dir/data/workspace/wheat_potential_biomprod_201010_doukkala/wheat_potential_biomprod_201010_doukkala.geotiff"
-bins = 3
+bins = 300
 
 
 class GeobricksTest(unittest.TestCase):
