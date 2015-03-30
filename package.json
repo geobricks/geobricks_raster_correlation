@@ -1,0 +1,36 @@
+{
+   "name": "geobricks_raster_correlation",
+   "label": {
+      "en": "Raster Correlation"
+   },
+   "language": "Python",
+   "description": "Library to correlate two raster and get correlation statistics and its chart scatter series.",
+   "license": "GPL2",
+   "homepage": "http://geobricks.org/",
+   "keywords": [
+      "gis",
+      "python",
+      "modis",
+      "download",
+      "plugin"
+   ],
+   "version": "1.0.0",
+   "contributors": [
+      {
+         "name": "Simone Murzilli",
+         "email": "simone.murzilli@gmail.com"
+      },
+      {
+         "name": "Guido Barbaglia",
+         "email": "guido.barbaglia@gmail.com"
+      }
+   ],
+   "repository": {
+      "type": "git",
+      "url": "https://github.com/geobricks/geobricks_raster_correlation"
+   },
+   "devDependencies": {
+      "grunt": "~0.4.5",
+      "grunt-markdown": "~0.7.0"
+   }
+}
