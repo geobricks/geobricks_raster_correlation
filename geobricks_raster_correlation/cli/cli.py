@@ -6,7 +6,9 @@ from geobricks_raster_correlation.core.raster_correlation_core import get_correl
 @named('corr')
 @arg('--bins', default=150, help='Bins')
 def cli_get_correlation(file1, file2, **kwargs):
-    print get_correlation(file1, file2, kwargs['bins'])
+    corr = get_correlation(file1, file2, kwargs['bins'])
+    print "Series: ", corr['series']
+    print "Stats: ", corr['stats']
 
 
 def main():
