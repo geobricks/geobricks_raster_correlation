@@ -14,13 +14,13 @@ pip install GeobricksRasterCorrelation
 ## Library usage
 
 ```python
-from geobricks_raster_correlation.core.raster_correlation_core import create_scatter
+from geobricks_raster_correlation.core.raster_correlation_core import get_correlation
 
 raster_path1 = "path_to_raster1.tif"
 raster_path2 = "path_to_raster2.tif"
 # Number of bins to be applied to the scatter chart
 bins = 300
-corr = create_scatter(raster_path1, raster_path2, bins)
+corr = get_correlation(raster_path1, raster_path2, bins)
 print corr
 ```
 
