@@ -10,6 +10,7 @@ class GeobricksTest(unittest.TestCase):
 
     def test_correlation(self):
         corr = get_correlation(raster_path1, raster_path2, bins)
+        print corr["stats"]
         self.assertEqual(corr["stats"]["r_value"], 0.88488086004672395)
 
 
