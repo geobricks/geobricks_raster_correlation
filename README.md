@@ -7,9 +7,9 @@ The library provides an easy way correlate raster of the same size. It returns a
 
 ## Dependencies
 
-The library has different dependencies (see also requirements.txt) click, watchdog, flask, flask-cors, numpy, scipy, pysal, brewer2mpl, rasterio, GeobricksCommon
+The library has different dependencies (see also requirements.txt) click, watchdog, flask, flask-cors, numpy, scipy, pysal, brewer2mpl, rasterio, GeobricksCommon.
 
-## On linux (ubuntu)
+## On Ubuntu
 
 ```bash
 sudo add-apt-repository ppa:ubuntugis/ppa
