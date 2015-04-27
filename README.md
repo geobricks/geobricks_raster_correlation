@@ -27,18 +27,18 @@ In case of compiling errors for scipy
 sudo apt-get install libblas-dev liblapack-dev
 ```
 
-**N.B.** Due to a well known PyPi issue it's not possible to install scipy and pysal through setup.py or requirements.txt 
-
-In order to install pysal run the following command
-```bash
-sudo pip install pysal
-```
-
 ## Installation
 
 The library is distributed through PyPi and can be installed by typing the following command in the console:
 ```
 sudo pip install GeobricksRasterCorrelation
+```
+
+**N.B.** Due to a well known PyPi issue it's not possible to install scipy and pysal through setup.py or requirements.txt 
+
+In order to install pysal run the following command
+```bash
+sudo pip install pysal
 ```
 
 
