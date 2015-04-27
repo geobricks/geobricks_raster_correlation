@@ -1,0 +1,10 @@
+click
+watchdog
+flask
+flask-cors
+numpy
+scipy
+pysal
+brewer2mpl
+rasterio
+GeobricksCommon
