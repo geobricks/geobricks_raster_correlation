@@ -14,17 +14,17 @@ The library has different dependencies (see also requirements.txt) click, watchd
 ```bash
 sudo add-apt-repository ppa:ubuntugis/ppa
 sudo apt-get update
-sudo apt-get -y install python-numpy libgdal1h gdal-bin libgdal-dev
+sudo apt-get install python-numpy libgdal1h gdal-bin libgdal-dev
 ```
 
 In case of compiling errors for numpy
 ```bash
-sudo apt-get -y install libblas3gf libc6 libgcc1 libgfortran3 liblapack3gf libstdc++6 build-essential gfortran python-all-dev libatlas-base-dev python-dev
+sudo apt-get install libblas3gf libc6 libgcc1 libgfortran3 liblapack3gf libstdc++6 build-essential gfortran python-all-dev libatlas-base-dev python-dev
 ```
 
 In case of compiling errors for scipy
 ```bash
-sudo apt-get -y install libblas-dev liblapack-dev
+sudo apt-get install libblas-dev liblapack-dev
 ```
 
 **N.B.** Due to a well known PyPi issue it's not possible to install scipy and pysal through setup.py or requirements.txt 
