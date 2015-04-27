@@ -1,14 +1,44 @@
 Geobricks Raster Correlation
 ====================
 
-The Geobricks Raster Correlation library provides an easy way correlate two raster of the same size, returning a json containing statistical outputs and frequencies information to be used directly with Highcharts JS library.
+The library provides an easy way correlate raster of the same size. It returns a json containing statistical outputs and frequencies information to be directly used with Highcharts JS library.
 
 # Installation
 
+## Dependencies
+
+The library has different dependencies (see also requirements.txt) click, watchdog, flask, flask-cors, numpy, scipy, pysal, brewer2mpl, rasterio, GeobricksCommon
+
+## On linux (ubuntu)
+
+```bash
+sudo add-apt-repository ppa:ubuntugis/ppa
+sudo apt-get update
+sudo apt-get -y install python-numpy libgdal1h gdal-bin libgdal-dev
+```
+
+In case of compiling errors for numpy
+```bash
+sudo apt-get -y install libblas3gf libc6 libgcc1 libgfortran3 liblapack3gf libstdc++6 build-essential gfortran python-all-dev libatlas-base-dev python-dev
+```
+
+In case of compiling errors for scipy
+```bash
+sudo apt-get -y install libblas-dev liblapack-dev
+```
+
 The library is distributed through PyPi and can be installed by typing the following command in the console:
 ```
-pip install GeobricksRasterCorrelation
+sudo pip install GeobricksRasterCorrelation
 ```
+
+**N.B.** Due to a well known PyPi issue it's not possible to install scipy and pysal through setup.py or requirements.txt 
+
+In order to install pysal run the following command
+```bash
+sudo pip install pysal
+```
+
 # Examples
 
 ## Library usage
