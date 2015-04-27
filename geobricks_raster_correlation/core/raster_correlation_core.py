@@ -39,13 +39,10 @@ def get_correlation(raster_path1, raster_path2, bins=300, intervals=6, color_ram
             #
             if _check_raster_equal_size(ds1, ds2):
                 array1 = np.array(ds1.read()).flatten()
-                #nodata1 = band1.GetNoDataValue()
-                nodata1 = ds1.meta['nodata']
+                nodata1 = ds1.meta['nodata'] if 'nodata' in ds1.meta else None
 
                 array2 = np.array(ds2.read()).flatten()
-                nodata2 = ds2.meta['nodata']
-
-                print ds1.meta
+                nodata2 = ds2.meta['nodata'] if 'nodata' in ds2.meta else None
 
                 # min/max calulation
                 # TODO: check if min and max are not passed and they have to be computed or not
