@@ -57,7 +57,7 @@ corr = get_correlation(raster_path1, raster_path2, bins)
 print corr
 ```
 
-The returned json contains:
+The returned json:
  
- * in corr['stats'] the statistics: slope, p_value, std_err, intercept, r_value
- * in corr['series'] there are the series. The series output can be used directly as an input with Highcharts. 
+ * corr['stats'] contains the statistics: slope, p_value, std_err, intercept, r_value
+ * corr['series']  contains the output series that can be used directly as an Highcharts input. 
