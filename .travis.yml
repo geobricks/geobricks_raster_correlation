@@ -23,6 +23,7 @@ before_install:
 
 install:
   - "pip install -r requirements.txt"
+  - "pip install -r requirements-scipy.txt"
   - "pip install -r requirements-pysal.txt"
   - "pip install pytest pytest-cov"
   - "pip install coveralls"
