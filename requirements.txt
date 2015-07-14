@@ -2,7 +2,6 @@ watchdog
 flask
 flask-cors
 brewer2mpl
-PySal
 numpy
 scipy
 GeobricksCommon
