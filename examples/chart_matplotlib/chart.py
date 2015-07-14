@@ -3,8 +3,9 @@ from matplotlib import pyplot as plt
 from matplotlib.pylab import polyfit, polyval
 
 # input to your raster files
-raster_path1 = "../../test_data/morocco/wheat_actual_biomprod_201010_doukkala.tif"
-raster_path2 = "../../test_data/morocco/wheat_potential_biomprod_201010_doukkala.tif"
+raster_path1 = "../../tests/data/geoserver_data_dir/data/workspace/wheat_actual_biomprod_201010_doukkala/wheat_actual_biomprod_201010_doukkala.geotiff"
+raster_path2 = "../../tests/data/geoserver_data_dir/data/workspace/wheat_potential_biomprod_201010_doukkala/wheat_potential_biomprod_201010_doukkala.geotiff"
+
 
 # Number of sampling bins
 bins = 150
