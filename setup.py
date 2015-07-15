@@ -3,11 +3,7 @@ from setuptools import find_packages
 
 setup(
     name='GeobricksRasterCorrelation',
-<<<<<<< HEAD
-    version='0.1.1',
-=======
-    version='0.1.11',
->>>>>>> master
+    version='0.1.12',
     author='Simone Murzilli; Guido Barbaglia',
     author_email='geobrickspy@gmail.com',
     packages=find_packages(),
@@ -15,25 +11,12 @@ setup(
     long_description=open('README.md').read(),
     description='Geobricks library to correlate two raster and create statistics and scatter charts.',
     install_requires=[
-<<<<<<< HEAD
         # 'flask',
         # 'brewer2mpl',
         # 'PySal',
         # 'numpy',
         # 'scipy',
         # 'GeobricksCommon',
-=======
-        'click',
-        'watchdog',
-        'flask',
-        'flask-cors',
-        'numpy',
-        'scipy',
-        # 'pysal',
-        'brewer2mpl',
-        'rasterio',
-        'GeobricksCommon'
->>>>>>> master
     ],
     entry_points={
         'console_scripts': [
