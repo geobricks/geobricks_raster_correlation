@@ -29,8 +29,10 @@ sudo apt-get install libblas-dev liblapack-dev
 
 ## Installation
 
-The library is distributed through PyPi and can be installed by typing the following command in the console:
+The library is distributed through PyPi and can be installed by typing the following commands in the console:
 ```
+pip -r https://raw.githubusercontent.com/geobricks/geobricks_raster_correlation/master/requirements.txt
+
 pip install GeobricksRasterCorrelation
 ```
 
@@ -55,6 +57,42 @@ raster_path2 = "path_to_raster2.tif"
 bins = 300
 corr = get_correlation(raster_path1, raster_path2, bins)
 print corr
+```
+
+ ## Example with matplotlib
+ 
+ ```python
+ 
+from geobricks_raster_correlation.core.raster_correlation_core import get_correlation
+from matplotlib import pyplot as plt
+from matplotlib.pylab import polyfit, polyval
+
+# input to your raster files
+raster_path1 = "path_to_raster1.tif"
+raster_path2 = "path_to_raster2.tif"
+
+# Number of sampling bins
+bins = 150
+
+corr = get_correlation(raster_path1, raster_path2, bins)
+x = []
+y = []
+colors = []
+#print corr['series']
+for serie in corr['series']:
+    colors.append(serie['color'])
+    for data in serie['data']:
+        x.append(data[0])
+        y.append(data[1])
+
+# Adding regression line
+(m, b) = polyfit(x, y, 1)
+yp = polyval([m, b], x)
+plt.plot(x, yp)
+
+# plotting scatter
+plt.scatter(x, y, c=colors)
+plt.show()
 ```
 
 The returned json:
