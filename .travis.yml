@@ -16,8 +16,7 @@ before_install:
   - sudo apt-get -y install python-dev
 
 install:
-  - "pip install -r requirements-dev.txt"
-  - travis_wait "pip install -r requirements-scipy.txt"
+  - travis_wait "pip install -r requirements.txt"
   - "pip install -r requirements-pysal.txt"
   - "pip install pytest pytest-cov"
   - "pip install coveralls"
