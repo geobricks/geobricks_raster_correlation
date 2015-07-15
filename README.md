@@ -61,8 +61,7 @@ print corr
 
  ## Example with matplotlib
  
- ```python
- 
+```python
 from geobricks_raster_correlation.core.raster_correlation_core import get_correlation
 from matplotlib import pyplot as plt
 from matplotlib.pylab import polyfit, polyval
