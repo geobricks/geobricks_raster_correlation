@@ -79,7 +79,7 @@ corr = get_correlation(raster_path1, raster_path2, bins)
 x = []
 y = []
 colors = []
-#print corr['series']
+# print corr['series']
 for serie in corr['series']:
     colors.append(serie['color'])
     for data in serie['data']:
