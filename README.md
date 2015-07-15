@@ -60,7 +60,9 @@ print corr
 ```
 
 ## Example with matplotlib
- 
+
+This example generate a correlation chart with matplotlib
+
 ```python
 from geobricks_raster_correlation.core.raster_correlation_core import get_correlation
 from matplotlib import pyplot as plt
