@@ -1,7 +1,7 @@
-Geobricks Raster Correlation
+Raster Correlation
 ====================
 
-The library provides an easy way correlate raster of the same size. It returns a json containing statistical outputs and frequencies information to be directly used with Highcharts JS library.
+The library provides an easy way correlate raster of the same size. It returns a json containing statistical outputs and frequencies information to be directly used with Highcharts JS or Matplotlib chart libraries.
 
 # Installation
 
@@ -98,5 +98,5 @@ plt.show()
 
 The returned json:
  
- * corr['stats'] contains the statistics: slope, p_value, std_err, intercept, r_value
- * corr['series']  contains the output series that can be used directly as an Highcharts input. 
+ * corr['stats']  contains the statistics: slope, p_value, std_err, intercept, r_value
+ * corr['series'] contains the output series that can be used directly as an Highcharts input or with Matplotlib.
