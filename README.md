@@ -29,8 +29,10 @@ sudo apt-get install libblas-dev liblapack-dev
 
 ## Installation
 
-The library is distributed through PyPi and can be installed by typing the following command in the console:
+The library is distributed through PyPi and can be installed by typing the following commands in the console:
 ```
+pip -r https://raw.githubusercontent.com/geobricks/geobricks_raster_correlation/master/requirements.txt
+
 pip install GeobricksRasterCorrelation
 ```
 
