@@ -1,6 +1,6 @@
 import numpy as np
+import gdal
 import time
-import rasterio
 from pysal.esda import mapclassify
 from scipy.stats import linregress
 from geobricks_common.core.log import logger
@@ -32,56 +32,59 @@ def get_correlation_json(obj):
 
 def get_correlation(raster_path1, raster_path2, bins=300, intervals=6, color_ramp='Reds', reverse=False, min1=None, max1=None, min2=None, max2=None, band1=1, band2=1, classification_type="Jenks_Caspall"):
 
-    with rasterio.open(raster_path1) as ds1:
-        with rasterio.open(raster_path2) as ds2:
-            if bins is None:
-                bins = 300
-            #
-            if _check_raster_equal_size(ds1, ds2):
-                array1 = np.array(ds1.read()).flatten()
-                nodata1 = ds1.meta['nodata'] if 'nodata' in ds1.meta else None
+    ds1 = gdal.Open(raster_path1)
+    ds2 = gdal.Open(raster_path2)
 
-                array2 = np.array(ds2.read()).flatten()
-                nodata2 = ds2.meta['nodata'] if 'nodata' in ds2.meta else None
+    if bins is None:
+        bins = 300
 
-                # min/max calulation
-                # TODO: check if min and max are not passed and they have to be computed or not
-                min1_computed = np.nanmin(array1)
-                max1_computed = np.nanmax(array1)
-                min2_computed = np.nanmin(array2)
-                max2_computed = np.nanmax(array2)
-                if min1 is None: min1 = min1_computed
-                if max1 is None: max1 = max1_computed
-                if min2 is None: min2 = min2_computed
-                if max2 is None: max2 = max2_computed
+    if _check_raster_equal_size(ds1, ds2):
+        band1 = ds1.GetRasterBand(band1)
+        array1 = np.array(band1.ReadAsArray()).flatten()
+        nodata1 = band1.GetNoDataValue()
 
-                # this is useful? In theory should be enough the min1 and min2
-                #if forced_min1 is None: forced_min1 = min1
-                #if forced_min2 is None: forced_min2 = min2
+        band2 = ds2.GetRasterBand(band2)
+        array2 = np.array(band2.ReadAsArray()).flatten()
+        nodata2 = band2.GetNoDataValue()
 
-                # Calculation of the frequencies
-                statistics = compute_frequencies(array1, array2, min1, min2, max1, max2, nodata1, nodata2, bins)
-                series = get_series(statistics["scatter"].values(), intervals, color_ramp, reverse, classification_type)
+        # min/max calulation
+        # TODO: check if min and max are not passed and they have to be computed or not
+        (min1_computed, max1_computed) = band1.ComputeRasterMinMax(0)
+        (min2_computed, max2_computed) = band2.ComputeRasterMinMax(0)
+        if min1 is None: min1 = min1_computed
+        if max1 is None: max1 = max1_computed
+        if min2 is None: min2 = min2_computed
+        if max2 is None: max2 = max2_computed
 
-                result = dict()
-                # probably not useful for the chart itself
-                # result['min1'] = min1,
-                # result['max1'] = max1,
-                # result['min2'] = min2,
-                # result['max2'] = max2,
-                result["series"] = series
-                result["stats"] = statistics["stats"]
+        # this is useful? In theory should be enough the min1 and min2
+        #if forced_min1 is None: forced_min1 = min1
+        #if forced_min2 is None: forced_min2 = min2
 
-                # is it useful to remove them from the memory?
-                del ds1, ds2, array1, array2
-                return result
+        # Calculation of the frequencies
+        statistics = compute_frequencies(array1, array2, min1, min2, max1, max2, nodata1, nodata2, bins)
+        series = get_series(statistics["scatter"].values(), intervals, color_ramp, reverse, classification_type)
+
+        result = dict()
+        # probably not useful for the chart itself
+        # result['min1'] = min1,
+        # result['max1'] = max1,
+        # result['min2'] = min2,
+        # result['max2'] = max2,
+        result["series"] = series
+        result["stats"] = statistics["stats"]
+
+        # is it useful to remove them from the memory?
+        del ds1, ds2, array1, array2
+        return result
 
 
 def _check_raster_equal_size(ds1, ds2):
-    # TODO: check if it's faster 'height' and 'rows' in ds1.meta['height']
-    if ds1.shape != ds2.shape:
+    rows1 = ds1.RasterYSize; cols1 = ds1.RasterXSize
+    rows2 = ds2.RasterYSize; cols2 = ds2.RasterXSize
+    if cols1 != cols2 or rows1 != rows2:
         return False
-        raise Exception("The rasters cannot be processed because they have different dimensions")
+        log.error("%sx%s %sx%s" % (rows1, cols1, rows2, cols2))
+        raise Exception("The rasters cannot be processed because they have different dimensions", 400)
     return True
 
 
