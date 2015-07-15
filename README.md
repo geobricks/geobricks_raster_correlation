@@ -59,7 +59,7 @@ corr = get_correlation(raster_path1, raster_path2, bins)
 print corr
 ```
 
- ## Example with matplotlib
+## Example with matplotlib
  
 ```python
 from geobricks_raster_correlation.core.raster_correlation_core import get_correlation
