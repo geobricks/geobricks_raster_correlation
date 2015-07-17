@@ -1,3 +1,5 @@
+https://travis-ci.org/geobricks/geobricks_raster_correlation.svg?branch=master
+
 Raster Correlation
 ====================
 
