@@ -1,4 +1,4 @@
-https://travis-ci.org/geobricks/geobricks_raster_correlation.svg?branch=master
+[![Build Status](https://travis-ci.org/geobricks/geobricks_gis_vector.svg?branch=master)](https://travis-ci.org/geobricks/geobricks_gis_vector)
 
 Raster Correlation
 ====================
