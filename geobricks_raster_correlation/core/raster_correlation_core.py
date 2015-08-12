@@ -34,6 +34,8 @@ def get_correlation(raster_path1, raster_path2, bins=300, intervals=6, color_ram
 
     with rasterio.open(raster_path1) as ds1:
         with rasterio.open(raster_path2) as ds2:
+            log.info(raster_path1)
+            log.info(raster_path2)
             if bins is None:
                 bins = 300
             #
@@ -74,7 +76,7 @@ def get_correlation(raster_path1, raster_path2, bins=300, intervals=6, color_ram
                 result["stats"] = stats
 
                 # is it useful to remove them from the memory?
-                del ds1, ds2, array1, array2, statistics
+                del array1, array2, statistics
                 return result
 
 
@@ -137,7 +139,7 @@ def compute_frequencies(array1, array2, min1, min2, max1, max2, nodata1=None, no
     d = process_correlation(array1, array2, bins)
 
     # is it useful?
-    del array1, array2
+    del array1, array2, compound_index
     return d
 
 
