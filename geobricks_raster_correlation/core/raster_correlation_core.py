@@ -62,6 +62,7 @@ def get_correlation(raster_path1, raster_path2, bins=300, intervals=6, color_ram
                 # Calculation of the frequencies
                 statistics = compute_frequencies(array1, array2, min1, min2, max1, max2, nodata1, nodata2, bins)
                 series = get_series(statistics["scatter"].values(), intervals, color_ramp, reverse, classification_type)
+                stats = statistics["stats"]
 
                 result = dict()
                 # probably not useful for the chart itself
@@ -70,10 +71,10 @@ def get_correlation(raster_path1, raster_path2, bins=300, intervals=6, color_ram
                 # result['min2'] = min2,
                 # result['max2'] = max2,
                 result["series"] = series
-                result["stats"] = statistics["stats"]
+                result["stats"] = stats
 
                 # is it useful to remove them from the memory?
-                del ds1, ds2, array1, array2
+                del ds1, ds2, array1, array2, statistics
                 return result
 
 
@@ -146,7 +147,6 @@ def classify_values(values, k=5, classification_type="Jenks_Caspall"):
     start_time = time.time()
     #result = mapclassify.quantile(values, k)
 
-    #print values
     #start_time = time.time()
     array = np.array(values)
     result = mapclassify.Jenks_Caspall_Forced(array, k)
