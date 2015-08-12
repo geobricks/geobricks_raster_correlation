@@ -6,6 +6,15 @@ from geobricks_raster_correlation.core.raster_correlation_core import get_correl
 
 app = Blueprint(__name__, __name__)
 
+@app.route('/')
+@cross_origin(origins='*')
+def root():
+    """
+    Root REST service.
+    @return: Welcome message.
+    """
+    return 'Welcome to Raster Correlation Service!'
+
 @app.route('/discovery/')
 @cross_origin(origins='*')
 def discovery():
